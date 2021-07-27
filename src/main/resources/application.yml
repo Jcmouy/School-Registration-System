@@ -1,0 +1,46 @@
+school:
+  students:
+    pageSize: 10
+
+#logging:
+#  level:
+#    org.springframework.data.rest: debug
+
+server:
+  servlet:
+    context-path: /api
+
+spring: 
+  security:
+    user:
+      name: admin
+      password: admin
+
+#---
+#spring:
+# profiles: prod
+  
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST}/schoolregistration?serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: schooluser
+    password: schoolpassword
+  jpa:
+    properties:
+      hibernate:
+        temp.use_jdbc_metadata_defaults: false
+        hibernate.ddl-auto: none
+        show_sql: true
+        non_contextual_creation: false
+        format_sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+  sql:
+    init:
+      schema-locations: classpath:schema.sql
+      data-locations: classpath:data.sql
+      mode: always
+      continue-on-error: true
+      
+logging:
+  level:
+    school: WARN
